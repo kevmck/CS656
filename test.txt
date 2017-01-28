@@ -1,3 +1,0 @@
-Testing git
-
-Second test; versioning verification
