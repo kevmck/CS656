@@ -20,14 +20,45 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_main" />
+
+    <Button
+        android:id="@+id/buttonHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_input_add"
-        android:tint="@android:color/white"/>
-    <include layout="@layout/content_main" />
+        android:layout_marginTop="150dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:text="Search History"
+        android:textSize="15sp"
+        android:padding="20dip"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/buttonNewSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:text="New Search"
+        android:textSize="15sp"
+
+        android:padding="20dip"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/mainText"
+        android:layout_marginBottom="300dp"
+        android:text="Car Recall Information"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="30sp"
+        />
+
 
 </android.support.design.widget.CoordinatorLayout>

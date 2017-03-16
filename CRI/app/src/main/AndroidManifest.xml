@@ -27,6 +27,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cs656.cri.MainActivity" />
         </activity>
+        <activity android:name=".search_history"></activity>
     </application>
 
 </manifest>

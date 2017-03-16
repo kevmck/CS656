@@ -13,13 +13,8 @@
     tools:context="cs656.cri.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Begin by adding a car to your list."
-        android:textSize="15sp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/textView" />
+
+
+
 
 </RelativeLayout>
