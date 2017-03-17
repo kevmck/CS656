@@ -13,12 +13,45 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button searchLaunch;
+    private Button historyLaunch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        searchLaunch = (Button) findViewById(R.id.buttonNewSearch);
+        historyLaunch = (Button) findViewById(R.id.buttonHistory);
+
+        searchLaunch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                launchActivity();
+            }
+        });
+
+        historyLaunch.setOnClickListener(new View.OnClickListener(){
+           @Override
+            public void onClick(View view)
+           {
+               launchActivity2();
+           }
+        });
+    }
+
+    private void launchActivity()
+    {
+        Intent intent = new Intent(this, carSearch.class);
+        startActivity(intent);
+    }
+
+    private void launchActivity2()
+    {
+        Intent intent = new Intent(this, search_history.class);
+        startActivity(intent);
     }
 
     @Override

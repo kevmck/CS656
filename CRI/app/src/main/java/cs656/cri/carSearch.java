@@ -20,7 +20,7 @@ public class carSearch extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        backButton = (Button) findViewById(R.id.buttonNewSearch);
+       /* backButton = (Button) findViewById(R.id.buttonNewSearch);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,7 +28,7 @@ public class carSearch extends AppCompatActivity {
                 finish();
             }
         });
-
+*/
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
