@@ -54,6 +54,18 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void launchActivity3()
+    {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    private void launchActivity4()
+    {
+        Intent intent = new Intent(this, About.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -63,17 +75,24 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId())
+        {
+            case R.id.action_settings:
+                launchActivity();
+                return true;
+            case R.id.action_settings1:
+                launchActivity2();
+                return true;
+            case R.id.action_settings2:
+                launchActivity3();
+                return true;
+            case R.id.action_settings3:
+                launchActivity4();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     private void launchCarSearch()
