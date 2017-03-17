@@ -41,7 +41,11 @@
                 android:value="cs656.cri.MainActivity" />
         </activity>
         <activity android:name=".About"
-            android:label="About"></activity>
+            android:label="About"
+            android:parentActivityName=".MainActivity"
+            ><meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="cs656.cri.MainActivity" /></activity>
     </application>
 
 </manifest>
