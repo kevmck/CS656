@@ -28,7 +28,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cs656.cri.MainActivity" />
         </activity>
-
+//THIS IS A CHANGE
         <activity android:name=".search_history"
             android:label="Search History"
             android:parentActivityName=".MainActivity"
