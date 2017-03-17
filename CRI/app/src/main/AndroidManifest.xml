@@ -18,16 +18,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".carSearch"
-            android:label="@string/title_activity_car_search"
+            android:label="Car Search"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cs656.cri.MainActivity" />
         </activity>
-        <activity android:name=".search_history"></activity>
+
+        <activity android:name=".search_history"
+            android:label="Search History"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
