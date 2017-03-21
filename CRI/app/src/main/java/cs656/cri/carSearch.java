@@ -65,7 +65,6 @@ class APIInterface {
 
             while ((apiStream = yearIn.readLine()) != null)
             System.out.println(apiStream);
-            Log.d("success",apiStream);
             yearIn.close();
            // return apiStream;
 
