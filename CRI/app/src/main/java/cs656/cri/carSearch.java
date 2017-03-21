@@ -9,8 +9,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import java.net.*;
-import java.io.*;
 import android.widget.TextView;
 import android.view.View;
 
@@ -28,7 +26,6 @@ public class carSearch extends AppCompatActivity {
         final TextView textView5 = (TextView)findViewById(R.id.textView5);
 
        /* backButton = (Button) findViewById(R.id.buttonNewSearch);
-
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,33 +38,11 @@ public class carSearch extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                APIInterface api = new APIInterface();
-                textView5.setText("Success");
-                Log.i("Success", string);
+            api test = new api();
 
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-}
-
-class APIInterface {
-    public void main(String[] args) throws Exception
-    {
-            String apiStream;
-
-            //API request for list of years
-            String apiLink = "https://one.nhtsa.gov/webapi/api/Recalls/vehicle?format=json";
-            URL yearListLink = new URL(apiLink);
-            URLConnection yearList = yearListLink.openConnection();
-            BufferedReader yearIn = new BufferedReader(new InputStreamReader(yearList.getInputStream()));
-
-            while ((apiStream = yearIn.readLine()) != null)
-            System.out.println(apiStream);
-            yearIn.close();
-           // return apiStream;
-
-
     }
 }
