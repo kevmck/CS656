@@ -74,6 +74,16 @@
         <item>1950</item>
         <item>1949</item>
     </string-array>
+
+    <string-array name="make_array">
+
+
+    </string-array>
+
+    <string-array name="model_array">
+
+
+    </string-array>
     <string name="title_activity_settings">Settings</string>
 
     <!-- Strings related to Settings -->
