@@ -22,8 +22,8 @@ public class carSearch extends AppCompatActivity {
         setContentView(R.layout.activity_car_search);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final String string = new String("succes");
-        final TextView textView5 = (TextView)findViewById(R.id.textView5);
+        //final String string = new String("succes");
+        //final TextView textView5 = (TextView)findViewById(R.id.textView5);
 
        /* backButton = (Button) findViewById(R.id.buttonNewSearch);
         backButton.setOnClickListener(new View.OnClickListener() {
