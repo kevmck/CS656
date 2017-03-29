@@ -12,12 +12,14 @@ public class SearchResults extends AppCompatActivity {
         setContentView(R.layout.activity_search_results);
     }
 
-    // Launching "api.java"
-    private void launchActivity() {
+/*
+    // call api class
+    private void launchActivity()
+    {
         Intent intent = new Intent(this, api.class);
         startActivity(intent);
     }
-
-
-
+*/
 }
+
+
