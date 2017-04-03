@@ -32,7 +32,13 @@ public class carSearch extends AppCompatActivity {
                 finish();
             }
         });
+
 */
+
+
+        //ApiRequest.api();
+        new Thread(new ApiRequest()).start();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

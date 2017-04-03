@@ -1,9 +1,12 @@
 package cs656.cri;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -21,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
         searchLaunch = (Button) findViewById(R.id.buttonNewSearch);
         historyLaunch = (Button) findViewById(R.id.buttonHistory);
@@ -40,6 +45,17 @@ public class MainActivity extends AppCompatActivity {
                launchActivity2();
            }
         });
+
+
+        if (ActivityCompat.checkSelfPermission(getApplication(), android.Manifest.permission.INTERNET)
+                != PackageManager.PERMISSION_GRANTED) {
+            int REQUEST_CODE = 100;
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, REQUEST_CODE);
+            System.out.println("No Internet permission");
+        } else {
+            System.out.println("Has Internet permission");
+        }
+
     }
 
     private void launchActivity()
