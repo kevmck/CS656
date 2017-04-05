@@ -15,26 +15,35 @@ import android.os.Message;
 
 class ApiRequest implements Runnable {
 
+    URL apiLink = null;
     Handler h;
+    String requestType = "ModelYear";
     ArrayList<String> dataArrayList = new ArrayList<String>();
+
+
+    public ApiRequest (String url, Handler h, String requestType){
+        this.h = h;
+        try {
+            this.apiLink = new URL(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        this.requestType = requestType;
+    }
+
 
     public ApiRequest (Handler h){
         this.h = h;
+        try {
+            apiLink = new URL("https://one.nhtsa.gov/webapi/api/Recalls/vehicle?format=json");
+        } catch (MalformedURLException e) {
+            System.out.println('0');
+        }
     }
 
 
     public void api()
     {
-        URL apiLink = null;
-        try
-        {
-            apiLink = new URL("https://one.nhtsa.gov/webapi/api/Recalls/vehicle?format=json");
-        }
-
-        catch (MalformedURLException e)
-        {
-            System.out.println('0');
-        }
 
         URLConnection apiRequest = null;
         try
@@ -68,8 +77,8 @@ class ApiRequest implements Runnable {
 
                 for (JsonObject year : yearList.getValuesAs(JsonObject.class))
                 {
-                    if (!year.getString("ModelYear").equals("9999"))
-                        dataArrayList.add(year.getString("ModelYear"));
+                    if (!year.getString(requestType).equals("9999"))
+                        dataArrayList.add(year.getString(requestType));
                 }
 
             }
@@ -96,6 +105,7 @@ class ApiRequest implements Runnable {
         this.api();
         Message msg = new Message();
         Bundle data = new Bundle();
+        data.putString("result","year");
         data.putStringArrayList("result", dataArrayList);
         msg.setData(data);
         if(h != null)
