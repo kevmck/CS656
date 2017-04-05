@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context="cs656.cri.SearchResults">
 
     <TextView
-        android:id="@+id/searchResults"
+        android:id="@+id/textView4"
         android:layout_width="356dp"
         android:layout_height="469dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="21dp" />
-</android.support.constraint.ConstraintLayout>
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="31dp" />
+
+</android.support.design.widget.CoordinatorLayout>
