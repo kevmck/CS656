@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context="cs656.cri.SearchResults">
 
+    <TextView
+        android:id="@+id/searchResults"
+        android:layout_width="356dp"
+        android:layout_height="469dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="12dp"
+        tools:layout_editor_absoluteY="21dp" />
 </android.support.constraint.ConstraintLayout>

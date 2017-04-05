@@ -20,6 +20,7 @@ class ApiRequest implements Runnable {
     String requestType = "ModelYear";
     ArrayList<String> dataArrayList = new ArrayList<String>();
 
+    String results = "";
 
     public ApiRequest (String url, Handler h, String requestType){
         this.h = h;
@@ -73,13 +74,22 @@ class ApiRequest implements Runnable {
             {
                 JsonReader jsonReader = Json.createReader(new StringReader(inputLine));
                 JsonObject jsonObj = jsonReader.readObject();
-                JsonArray yearList = jsonObj.getJsonArray("Results");
+                JsonArray list = jsonObj.getJsonArray("Results");
 
-                for (JsonObject year : yearList.getValuesAs(JsonObject.class))
-                {
-                    if (!year.getString(requestType).equals("9999"))
-                        dataArrayList.add(year.getString(requestType));
+                if(!requestType.equals("Results")){
+                    if(list==null){
+                        System.out.println(requestType);
+                    }
+                    for (JsonObject year : list.getValuesAs(JsonObject.class))
+                    {
+                        if (!year.getString(requestType).equals("9999"))
+                            dataArrayList.add(year.getString(requestType));
+                    }
+                } else {
+                    results = list.toString();
                 }
+
+
 
             }
         }
@@ -105,8 +115,10 @@ class ApiRequest implements Runnable {
         this.api();
         Message msg = new Message();
         Bundle data = new Bundle();
-        data.putString("result","year");
-        data.putStringArrayList("result", dataArrayList);
+        if(!requestType.equals("Results"))
+            data.putStringArrayList("result", dataArrayList);
+        else
+            data.putString("result", results);
         msg.setData(data);
         if(h != null)
             h.sendMessage(msg);

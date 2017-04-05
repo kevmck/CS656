@@ -24,8 +24,13 @@ public class carSearch extends AppCompatActivity {
     private Spinner mMakeSpinner;
     private Spinner mModelSpinner;
 
+
     private Handler mYearHandler;
     private Handler mMakeHandler;
+    private Handler mModelHandler;
+    private Handler mResultsHandler;
+
+    private String results = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +59,8 @@ public class carSearch extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                launchActivity();
+                //launchActivity();
+
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -72,6 +78,7 @@ public class carSearch extends AppCompatActivity {
     private void launchActivity()
     {
         Intent intent = new Intent(this, SearchResults.class);
+        intent.putExtra("results", results);
         startActivity(intent);
     }
 
@@ -98,8 +105,11 @@ public class carSearch extends AppCompatActivity {
         mMakeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selected = mMakeSpinner.getSelectedItem().toString();
-                Toast.makeText(getApplicationContext(),selected,Toast.LENGTH_SHORT).show();
+                String selected2 = mMakeSpinner.getSelectedItem().toString();
+                String year = mYearSpinner.getSelectedItem().toString();
+                Toast.makeText(getApplicationContext(),selected2,Toast.LENGTH_SHORT).show();
+                String makeSelected = "https://one.nhtsa.gov/webapi/api/Recalls/vehicle/modelyear/" + year + "/make/" + selected2 + "?format=json";
+                new Thread(new ApiRequest(makeSelected,mModelHandler,"Model")).start();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -109,8 +119,12 @@ public class carSearch extends AppCompatActivity {
         mModelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selected = mModelSpinner.getSelectedItem().toString();
-                Toast.makeText(getApplicationContext(),selected,Toast.LENGTH_SHORT).show();
+                String selected3 = mModelSpinner.getSelectedItem().toString();
+                String year = mYearSpinner.getSelectedItem().toString();
+                String make = mMakeSpinner.getSelectedItem().toString();
+                Toast.makeText(getApplicationContext(),selected3,Toast.LENGTH_SHORT).show();
+                String modelSelected = "https://one.nhtsa.gov/webapi/api/Recalls/vehicle/modelyear/" + year + "/make/" + make + "/model/" + selected3 + "?format=json";
+                new Thread(new ApiRequest(modelSelected,mResultsHandler,"Results")).start();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -130,6 +144,7 @@ public class carSearch extends AppCompatActivity {
                 System.out.println("Message is received!");
             }
         };
+
         mMakeHandler = new Handler() {
             @Override
             public void handleMessage(Message msg){
@@ -139,6 +154,30 @@ public class carSearch extends AppCompatActivity {
                 ArrayList<String> aList = data.getStringArrayList("result");
                 changeSpinner(mMakeSpinner, aList);
                 System.out.println("Message is received!");
+            }
+        };
+
+        mModelHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg){
+                //TODO
+                super.handleMessage(msg);
+                Bundle data = msg.getData();
+                ArrayList<String> aList = data.getStringArrayList("result");
+                changeSpinner(mModelSpinner, aList);
+                System.out.println("Message is received!");
+            }
+        };
+
+        mResultsHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg){
+                //TODO
+                super.handleMessage(msg);
+                Bundle data = msg.getData();
+                results = data.getString("result");
+                System.out.println(results);
+                launchActivity();
             }
         };
     }
