@@ -8,9 +8,9 @@
     tools:context="cs656.cri.SearchResults">
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="356dp"
-        android:layout_height="469dp"
+        android:id="@+id/searchResults"
+        android:layout_width="314dp"
+        android:layout_height="411dp"
         android:text="TextView"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="31dp" />

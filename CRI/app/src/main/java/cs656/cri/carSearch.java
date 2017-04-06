@@ -52,8 +52,11 @@ public class carSearch extends AppCompatActivity {
 
 */
         this.mYearSpinner = (Spinner) this.findViewById(R.id.spinner);
+        mYearSpinner.setSelection(0, false);
         this.mMakeSpinner = (Spinner) this.findViewById(R.id.spinner2);
+        mMakeSpinner.setSelection(0, false);
         this.mModelSpinner = (Spinner) this.findViewById(R.id.spinner3);
+        mModelSpinner.setSelection(0, false);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
