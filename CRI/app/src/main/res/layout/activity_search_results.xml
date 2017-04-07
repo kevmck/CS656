@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/listView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:fitsSystemWindows="true"
     tools:context="cs656.cri.SearchResults">
 
-    <TextView
-        android:id="@+id/searchResults"
-        android:layout_width="314dp"
-        android:layout_height="411dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="31dp" />
-
-</android.support.design.widget.CoordinatorLayout>
+</ListView>

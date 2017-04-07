@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class carSearch extends AppCompatActivity {
 
     private Button backButton;
+    private FloatingActionButton fab;
     private Spinner mYearSpinner;
     private Spinner mMakeSpinner;
     private Spinner mModelSpinner;
@@ -57,22 +58,12 @@ public class carSearch extends AppCompatActivity {
         mMakeSpinner.setSelection(0, false);
         this.mModelSpinner = (Spinner) this.findViewById(R.id.spinner3);
         mModelSpinner.setSelection(0, false);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                //launchActivity();
-
-            }
-        });
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         defineHandlers();
         registerListeners();
         new Thread(new ApiRequest(mYearHandler)).start();
-
 
     }
 
@@ -82,7 +73,8 @@ public class carSearch extends AppCompatActivity {
     {
         Intent intent = new Intent(this, SearchResults.class);
         intent.putExtra("results", results);
-        startActivity(intent);
+        if(mMakeSpinner.getSelectedItem()!=null && mYearSpinner.getSelectedItem()!=null && mModelSpinner.getSelectedItem()!=null)
+            startActivity(intent);
     }
 
 
@@ -92,6 +84,18 @@ public class carSearch extends AppCompatActivity {
     }
 
     private void registerListeners(){
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                String selected3 = mModelSpinner.getSelectedItem().toString();
+                String year = mYearSpinner.getSelectedItem().toString();
+                String make = mMakeSpinner.getSelectedItem().toString();
+                String modelSelected = "https://web.njit.edu/~klm25/cs656/cache.php?year=" + year + "&make=" + make + "&model=" + selected3;
+                new Thread(new ApiRequest(modelSelected,mResultsHandler,"Results")).start();
+            }
+        });
+
         mYearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -122,12 +126,13 @@ public class carSearch extends AppCompatActivity {
         mModelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selected3 = mModelSpinner.getSelectedItem().toString();
-                String year = mYearSpinner.getSelectedItem().toString();
-                String make = mMakeSpinner.getSelectedItem().toString();
-                Toast.makeText(getApplicationContext(),selected3,Toast.LENGTH_SHORT).show();
-                String modelSelected = "https://one.nhtsa.gov/webapi/api/Recalls/vehicle/modelyear/" + year + "/make/" + make + "/model/" + selected3 + "?format=json";
-                new Thread(new ApiRequest(modelSelected,mResultsHandler,"Results")).start();
+//                String selected3 = mModelSpinner.getSelectedItem().toString();
+//                String year = mYearSpinner.getSelectedItem().toString();
+//                String make = mMakeSpinner.getSelectedItem().toString();
+//                Toast.makeText(getApplicationContext(),selected3,Toast.LENGTH_SHORT).show();
+                //String modelSelected = "https://one.nhtsa.gov/webapi/api/Recalls/vehicle/modelyear/" + year + "/make/" + make + "/model/" + selected3 + "?format=json";
+//                String modelSelected = "https://web.njit.edu/~klm25/cs656/cache.php?year=" + year + "&make=" + make + "&model=" + selected3;
+//                new Thread(new ApiRequest(modelSelected,mResultsHandler,"Results")).start();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -181,6 +186,7 @@ public class carSearch extends AppCompatActivity {
                 results = data.getString("result");
                 System.out.println(results);
                 launchActivity();
+
             }
         };
     }

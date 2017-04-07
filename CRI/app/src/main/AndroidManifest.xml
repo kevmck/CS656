@@ -57,10 +57,10 @@
         </activity>
         <activity android:name=".SearchResults"
             android:label="Results"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".carSearch">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cs656.cri.MainActivity" />
+                android:value="cs656.cri.carSearch" />
         </activity>
     </application>
 
