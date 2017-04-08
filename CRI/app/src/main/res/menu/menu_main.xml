@@ -10,12 +10,6 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_settings1"
-        android:orderInCategory="101"
-        android:title="Search History"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/action_settings2"
         android:orderInCategory="102"
         android:title="@string/action_settings"

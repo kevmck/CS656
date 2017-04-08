@@ -1,53 +1,51 @@
 package cs656.cri;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
-
 import java.io.StringReader;
 import java.lang.String;
 import java.util.ArrayList;
-
 import javax.json.*;
-
-import static android.widget.Toast.LENGTH_LONG;
 import static cs656.cri.R.id.listView;
 
-public class SearchResults extends AppCompatActivity {
-
+public class SearchResults extends AppCompatActivity
+{
     private ListView mListView;
     private String results;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         Intent intent = this.getIntent();
         results = intent.getStringExtra("results");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
-
         mListView = (ListView) this.findViewById(listView);
         this.registerListener();
         this.setListView();
-
     }
 
 
-    private void setListView(){
+    private void setListView()
+    {
         JsonReader jsonReader = Json.createReader(new StringReader(results));
         JsonArray data = jsonReader.readArray();
         jsonReader.close();
-
         ArrayList<String> recalls = new ArrayList<>();
         String[] keys = {"Manufacturer", "NHTSACampaignNumber", "ReportReceivedDate", "Component", "Summary", "Conequence", "Remedy", "Notes", "ModelYear", "Make", "Model"};
 
-        for (JsonObject item : data.getValuesAs(JsonObject.class)) {
+        for (JsonObject item : data.getValuesAs(JsonObject.class))
+        {
             String str = "";
-            for (int i = 0; i < keys.length; i++) {
+            for (int i = 0; i < keys.length; i++)
+            {
                 String value = item.getString(keys[i]);
                 str += keys[i] + ": " + value + "\r\n\r\n";
             }
@@ -64,8 +62,19 @@ public class SearchResults extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 String o = (String) mListView.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(), o, LENGTH_LONG).show();
-                //TODO: create alert to show recall details
+
+                AlertDialog recallInfo = new AlertDialog.Builder(SearchResults.this).create();
+                recallInfo.setTitle("Details");
+                recallInfo.setMessage(o);
+                recallInfo.setButton(AlertDialog.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface msgDetail, int identify)
+                    {
+                        msgDetail.dismiss();
+                    }
+                });
+                recallInfo.show();
+
             }
         });
 

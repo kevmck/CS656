@@ -3,30 +3,34 @@ package cs656.cri;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
 import javax.json.*;
-import java.io.StringReader;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-class ApiRequest implements Runnable {
-
+class ApiRequest implements Runnable
+{
     URL apiLink = null;
     Handler h;
     String requestType = "ModelYear";
+    String results = "";
     ArrayList<String> dataArrayList = new ArrayList<String>();
 
-    String results = "";
 
-    public ApiRequest (String url, Handler h, String requestType){
+    public ApiRequest (String url, Handler h, String requestType)
+    {
         this.h = h;
-        try {
+        try
+        {
             this.apiLink = new URL(url);
-        } catch (MalformedURLException e) {
+        }
+        catch (MalformedURLException e)
+        {
             e.printStackTrace();
         }
         this.requestType = requestType;
@@ -35,9 +39,12 @@ class ApiRequest implements Runnable {
 
     public ApiRequest (Handler h){
         this.h = h;
-        try {
+        try
+        {
             apiLink = new URL("https://one.nhtsa.gov/webapi/api/Recalls/vehicle?format=json");
-        } catch (MalformedURLException e) {
+        }
+        catch (MalformedURLException e)
+        {
             System.out.println('0');
         }
     }
@@ -76,8 +83,10 @@ class ApiRequest implements Runnable {
                 JsonObject jsonObj = jsonReader.readObject();
                 JsonArray list = jsonObj.getJsonArray("Results");
 
-                if(!requestType.equals("Results")){
-                    if(list==null){
+                if(!requestType.equals("Results"))
+                {
+                    if(list==null)
+                    {
                         System.out.println(requestType);
                     }
                     for (JsonObject year : list.getValuesAs(JsonObject.class))
@@ -85,11 +94,11 @@ class ApiRequest implements Runnable {
                         if (!year.getString(requestType).equals("9999"))
                             dataArrayList.add(year.getString(requestType));
                     }
-                } else {
+                }
+                else
+                {
                     results = list.toString();
                 }
-
-
 
             }
         }
