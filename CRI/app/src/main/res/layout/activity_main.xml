@@ -27,20 +27,6 @@
         layout="@layout/content_main" />
 
     <Button
-        android:id="@+id/buttonHistory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:text="Search History"
-        android:textSize="15sp"
-        android:padding="20dip"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:theme="@style/buttonColors"/>
-
-    <Button
         android:id="@+id/buttonNewSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,16 +37,6 @@
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="center_horizontal"
         style="@style/Widget.AppCompat.Button.Borderless"/>
-
-    <TextView
-        android:id="@+id/mainText"
-        android:layout_marginBottom="300dp"
-        android:text="Car Recall Information"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textSize="30sp"
-        />
 
 
 </android.support.design.widget.CoordinatorLayout>

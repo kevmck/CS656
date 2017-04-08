@@ -60,12 +60,13 @@ public class SearchResults extends AppCompatActivity
         mListView.setClickable(true);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3)
+            {
                 String o = (String) mListView.getItemAtPosition(position);
-
                 AlertDialog recallInfo = new AlertDialog.Builder(SearchResults.this).create();
                 recallInfo.setTitle("Details");
                 recallInfo.setMessage(o);
+
                 recallInfo.setButton(AlertDialog.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener()
                 {
                     public void onClick(DialogInterface msgDetail, int identify)
@@ -73,6 +74,7 @@ public class SearchResults extends AppCompatActivity
                         msgDetail.dismiss();
                     }
                 });
+
                 recallInfo.show();
 
             }

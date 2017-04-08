@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity
 
 
         searchLaunch = (Button) findViewById(R.id.buttonNewSearch);
-        historyLaunch = (Button) findViewById(R.id.buttonHistory);
 
         searchLaunch.setOnClickListener(new View.OnClickListener() {
             @Override
