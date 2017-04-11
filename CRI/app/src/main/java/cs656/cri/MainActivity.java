@@ -11,12 +11,13 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity
 {
 
-    private Button searchLaunch;
-    private Button historyLaunch;
+    private ImageButton searchLaunch;
+    private ImageButton aboutLaunch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,7 +29,8 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        searchLaunch = (Button) findViewById(R.id.buttonNewSearch);
+        searchLaunch = (ImageButton) findViewById(R.id.buttonNewSearch);
+        aboutLaunch = (ImageButton) findViewById(R.id.buttonAbout);
 
         searchLaunch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +39,14 @@ public class MainActivity extends AppCompatActivity
                 launchActivity();
             }
         });
+        aboutLaunch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                launchActivity4();
+            }
+        });
+
 
         //Is this code necessary?
         if (ActivityCompat.checkSelfPermission(getApplication(), android.Manifest.permission.INTERNET)

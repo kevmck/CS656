@@ -14,20 +14,4 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:gravity="center"
-        android:text="Theresa Wagner&#xA;Kevin McKenzie&#xA;Badon Delmotte&#xA;&#xA; CS 656&#xA;API: NHTSA Car Recall API
-&#xA; 2017"
-        android:textSize="30sp" />
 </android.support.design.widget.CoordinatorLayout>

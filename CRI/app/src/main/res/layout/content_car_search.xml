@@ -15,11 +15,12 @@
 
 
     <Spinner
+        android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="76dp"
         android:spinnerMode="dialog"
+        tools:backgroundTint="@color/colorAccent"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
@@ -27,19 +28,21 @@
         android:text="Year"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/spinner"
-        android:layout_alignParentStart="true"
         android:layout_marginBottom="36dp"
-        android:id="@+id/textYear" />
+        android:id="@+id/textYear"
+        android:layout_above="@+id/spinner2"
+        android:layout_alignParentStart="true"
+        />
 
     <Spinner
+        android:id="@+id/spinner2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner2"
-        android:spinnerMode="dialog"
-        android:layout_below="@+id/spinner"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="83dp" />
+        android:layout_below="@+id/spinner"
+        android:layout_marginTop="83dp"
+        android:spinnerMode="dialog"
+        tools:backgroundTint="@color/colorAccent" />
 
     <TextView
         android:text="Make"
@@ -51,13 +54,14 @@
         android:layout_alignParentStart="true" />
 
     <Spinner
+        android:id="@+id/spinner3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner3"
-        android:spinnerMode="dialog"
-        android:layout_marginTop="109dp"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/spinner2"
-        android:layout_alignParentStart="true" />
+        android:layout_marginTop="111dp"
+        android:spinnerMode="dialog"
+        tools:backgroundTint="@color/colorAccent" />
 
     <TextView
         android:text="Model"

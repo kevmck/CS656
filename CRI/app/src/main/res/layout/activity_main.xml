@@ -20,20 +20,34 @@
 
     </android.support.design.widget.AppBarLayout>
 
-
-
     <include
         android:id="@+id/include"
         layout="@layout/content_main" />
 
-    <Button
-        android:id="@+id/buttonNewSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:text="New Search"
-        android:textSize="15sp"
-        android:padding="20dip"
+
+
+    <ImageButton
+
+    android:id="@+id/buttonNewSearch"
+    android:layout_width="303dp"
+    android:layout_height="73dp"
+    android:layout_marginTop="400dp"
+    android:scaleType="fitCenter"
+    android:background="@null"
+    app:srcCompat="@drawable/searchbutton"
+    app:layout_anchor="@+id/include"
+    app:layout_anchorGravity="center_horizontal"
+    style="@style/Widget.AppCompat.Button.Borderless"/>
+
+    <ImageButton
+
+        android:id="@+id/buttonAbout"
+        android:layout_width="303dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="500dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        app:srcCompat="@drawable/aboutbutton"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="center_horizontal"
         style="@style/Widget.AppCompat.Button.Borderless"/>
