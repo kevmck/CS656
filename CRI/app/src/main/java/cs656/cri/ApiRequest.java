@@ -142,7 +142,7 @@ class ApiRequest implements Runnable
         Message msg = new Message();
 
         //Bundle is used here to "send" data (arrays in this case) from the car search activity to this class.
-        //The arrays are encapsulatd in the Message 'msg' variable, and are placed in a bundle.
+        //The arrays are encapsulated in the Message 'msg' variable, and are placed in a bundle.
         //In the car search activity, the bundle and messages are handled and read, and the data used in the class.
         Bundle data = new Bundle();
         if(!requestType.equals("Results"))
