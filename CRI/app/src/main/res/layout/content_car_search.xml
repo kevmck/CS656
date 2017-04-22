@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/spinner3"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="28dp"
+            android:layout_marginBottom="36dp"
             android:text="Model"
             android:textColor="@color/colorAccent" />
 
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/spinner3"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="23dp"
+            android:layout_marginBottom="36dp"
             android:text="Make"
             android:textColor="@color/colorAccent" />
 
@@ -96,7 +96,7 @@
         tools:layout_conversion_absoluteHeight="73dp"
         tools:layout_editor_absoluteY="385dp"
         tools:layout_editor_absoluteX="41dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="33dp"
         android:layout_below="@+id/spinner3"
         android:layout_centerHorizontal="true" />
 

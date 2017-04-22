@@ -111,6 +111,7 @@ class ApiRequest implements Runnable
                 }
                 else
                 {
+
                     results = list.toString();
                 }
 

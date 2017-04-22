@@ -56,7 +56,6 @@ public class carSearch extends AppCompatActivity
     }
 
 
-
     private void launchActivity()
     {
         Intent intent = new Intent(this, SearchResults.class);
@@ -136,7 +135,7 @@ public class carSearch extends AppCompatActivity
 
 
     //Below are four handlers that serve similar functions, but vary based on the context (Year, Make, Model or Recall requests):
-    //Based on the data recieved from the ApiRequest class, they process the Message and Bundle, and use the data (in the form of an array)
+    //Based on the data received from the ApiRequest class, they process the Message and Bundle, and use the data (in the form of an array)
     //to populate the corresponding spinner.
     //The only exception to this is the mResultHandler, which simply stores the data received; it also launches the search results page.
     //We later display that in a ListView, and also in an Alert when an item from the ListView is selected.
