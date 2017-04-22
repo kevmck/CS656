@@ -1,6 +1,7 @@
 package cs656.cri;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,17 +11,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.Spinner;
-
 import java.util.ArrayList;
 
-public class carSearch extends AppCompatActivity {
+public class carSearch extends AppCompatActivity
+{
 
-    private FloatingActionButton fab;
+    private ImageButton fab;
     private Spinner mYearSpinner;
     private Spinner mMakeSpinner;
     private Spinner mModelSpinner;
-
     private Handler mYearHandler;
     private Handler mMakeHandler;
     private Handler mModelHandler;
@@ -29,8 +30,8 @@ public class carSearch extends AppCompatActivity {
     private String results = "";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_search);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -43,11 +44,13 @@ public class carSearch extends AppCompatActivity {
         this.mModelSpinner = (Spinner) this.findViewById(R.id.spinner3);
         mModelSpinner.setSelection(0, false);
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (ImageButton) findViewById(R.id.fab);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         defineHandlers();
         registerListeners();
+
+        //This is where the new thread for ApiRequest is started; a new thread is necessary for networking activities.
         new Thread(new ApiRequest(mYearHandler)).start();
 
     }
@@ -63,13 +66,18 @@ public class carSearch extends AppCompatActivity {
     }
 
 
-    private void changeSpinner(Spinner spinner, ArrayList<String> arrayList){
+    private void changeSpinner(Spinner spinner, ArrayList<String> arrayList)
+    {
         ArrayAdapter<String> yearAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, arrayList);
         spinner.setAdapter(yearAdapter);
     }
 
+    //This is where all the spinners' data is fetched, and is used to build the link to fetch the correct recall information
+    //that all three parameters (Year, Make, Model) have been satisfied.
+    //A new thread is also started here; this thread uses the link that was just made to get the correct recall information.
     private void registerListeners(){
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view)
             {
@@ -81,9 +89,13 @@ public class carSearch extends AppCompatActivity {
             }
         });
 
-        mYearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        //This is where the Year spinner's data is fetched, and is used to build the link to populate the Make spinner.
+        //A new thread is also started here; this thread uses the link that was just made to populate the next spinner.
+        mYearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
                 String selected = mYearSpinner.getSelectedItem().toString();
                 String yearSelected = "https://one.nhtsa.gov/webapi/api/Recalls/vehicle/modelyear/" + selected + "?format=json";
                 new Thread(new ApiRequest(yearSelected,mMakeHandler,"Make")).start();
@@ -93,9 +105,13 @@ public class carSearch extends AppCompatActivity {
             }
         });
 
-        mMakeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        //This is where the Make spinner's data is fetched, and is used to build the link to populate the Model spinner.
+        //A new thread is also started here; this thread uses the link that was just made to populate the next spinner.
+        mMakeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
                 String selected2 = mMakeSpinner.getSelectedItem().toString();
                 String year = mYearSpinner.getSelectedItem().toString();
                 String makeSelected = "https://one.nhtsa.gov/webapi/api/Recalls/vehicle/modelyear/" + year + "/make/" + selected2 + "?format=json";
@@ -106,7 +122,8 @@ public class carSearch extends AppCompatActivity {
             }
         });
 
-        mModelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mModelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -117,10 +134,19 @@ public class carSearch extends AppCompatActivity {
         });
     }
 
-    private void defineHandlers(){
-        mYearHandler = new Handler() {
+
+    //Below are four handlers that serve similar functions, but vary based on the context (Year, Make, Model or Recall requests):
+    //Based on the data recieved from the ApiRequest class, they process the Message and Bundle, and use the data (in the form of an array)
+    //to populate the corresponding spinner.
+    //The only exception to this is the mResultHandler, which simply stores the data received; it also launches the search results page.
+    //We later display that in a ListView, and also in an Alert when an item from the ListView is selected.
+    private void defineHandlers()
+    {
+        mYearHandler = new Handler()
+        {
             @Override
-            public void handleMessage(Message msg){
+            public void handleMessage(Message msg)
+            {
                 //TODO
                 super.handleMessage(msg);
                 Bundle data = msg.getData();
@@ -130,9 +156,11 @@ public class carSearch extends AppCompatActivity {
             }
         };
 
-        mMakeHandler = new Handler() {
+        mMakeHandler = new Handler()
+        {
             @Override
-            public void handleMessage(Message msg){
+            public void handleMessage(Message msg)
+            {
                 //TODO
                 super.handleMessage(msg);
                 Bundle data = msg.getData();
@@ -142,9 +170,11 @@ public class carSearch extends AppCompatActivity {
             }
         };
 
-        mModelHandler = new Handler() {
+        mModelHandler = new Handler()
+        {
             @Override
-            public void handleMessage(Message msg){
+            public void handleMessage(Message msg)
+            {
                 //TODO
                 super.handleMessage(msg);
                 Bundle data = msg.getData();
@@ -154,18 +184,20 @@ public class carSearch extends AppCompatActivity {
             }
         };
 
-        mResultsHandler = new Handler() {
+        mResultsHandler = new Handler()
+        {
             @Override
-            public void handleMessage(Message msg){
+            public void handleMessage(Message msg)
+            {
                 //TODO
                 super.handleMessage(msg);
                 Bundle data = msg.getData();
                 results = data.getString("result");
                 System.out.println(results);
                 launchActivity();
-
             }
         };
+
     }
 
 }
