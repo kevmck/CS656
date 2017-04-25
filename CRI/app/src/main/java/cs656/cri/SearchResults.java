@@ -33,6 +33,9 @@ public class SearchResults extends AppCompatActivity
     }
 
 
+    //Code below takes the results, and uses the defined keys to get the appropriate data in the correct order for display
+    //to the user. There is also some JSON decomposition and some string formatting being performed here to make the data
+    //more presentable. The data is then sent to the listView.
     private void setListView()
     {
         JsonReader jsonReader = Json.createReader(new StringReader(results));
@@ -56,9 +59,13 @@ public class SearchResults extends AppCompatActivity
     }
 
 
-    private void registerListener(){
+    //Listener for items in the ListView; based on a user's selection, the data is placed into an AlertDialog (pop-out message)
+    //and the user is then presented with the results.
+    private void registerListener()
+    {
         mListView.setClickable(true);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3)
             {

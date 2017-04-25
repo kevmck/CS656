@@ -27,19 +27,19 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
         searchLaunch = (ImageButton) findViewById(R.id.buttonNewSearch);
         aboutLaunch = (ImageButton) findViewById(R.id.buttonAbout);
 
-        searchLaunch.setOnClickListener(new View.OnClickListener() {
+        searchLaunch.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view)
             {
                 launchActivity();
             }
         });
-        aboutLaunch.setOnClickListener(new View.OnClickListener() {
+        aboutLaunch.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view)
             {
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-        //Is this code necessary?
+        //Internal test for internet connection; checks and sets the correct permission.
         if (ActivityCompat.checkSelfPermission(getApplication(), android.Manifest.permission.INTERNET)
                 != PackageManager.PERMISSION_GRANTED)
         {
@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    //Launch activities used to switch contexts while the app is running.
     private void launchActivity()
     {
         Intent intent = new Intent(this, carSearch.class);
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    //Launches activities from the menu button on the Action Bar.
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId())
@@ -108,7 +110,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    //Is this necessary?
     private void launchCarSearch()
     {
         Intent intent = new Intent(this,carSearch.class);

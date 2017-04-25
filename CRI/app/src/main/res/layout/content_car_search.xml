@@ -11,66 +11,94 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="cs656.cri.carSearch"
-    tools:showIn="@layout/activity_car_search">
+    tools:showIn="@layout/activity_car_search"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentBottom="true">
 
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:spinnerMode="dialog"
-        tools:backgroundTint="@color/colorAccent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="76dp"
+            android:spinnerMode="dialog"
+            tools:backgroundTint="@color/colorAccent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
 
-    <TextView
-        android:text="Year"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
-        android:id="@+id/textYear"
-        android:layout_above="@+id/spinner2"
-        android:layout_alignParentStart="true"
-        />
+        <TextView
+            android:text="Year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="36dp"
+            android:id="@+id/textYear"
+            android:layout_above="@+id/spinner2"
+            android:layout_alignParentStart="true"
+            android:textColor="@color/colorAccent"
+            />
 
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/spinner"
-        android:layout_marginTop="83dp"
-        android:spinnerMode="dialog"
-        tools:backgroundTint="@color/colorAccent" />
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/spinner"
+            android:layout_marginTop="83dp"
+            android:spinnerMode="dialog"
+            tools:backgroundTint="@color/colorAccent" />
 
-    <TextView
-        android:text="Make"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:id="@+id/textView2"
-        android:layout_alignBottom="@+id/spinner2"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/spinner3"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="36dp"
+            android:text="Model"
+            android:textColor="@color/colorAccent" />
 
-    <Spinner
-        android:id="@+id/spinner3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/spinner2"
-        android:layout_marginTop="111dp"
-        android:spinnerMode="dialog"
-        tools:backgroundTint="@color/colorAccent" />
+        <Spinner
+            android:id="@+id/spinner3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="79dp"
+            android:spinnerMode="dialog"
+            tools:backgroundTint="@color/colorAccent"
+            android:layout_below="@+id/spinner2"
+            android:layout_alignParentStart="true" />
 
-    <TextView
-        android:text="Model"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/spinner3"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="26dp"
-        android:id="@+id/textView3" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/spinner3"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="36dp"
+            android:text="Make"
+            android:textColor="@color/colorAccent" />
+
+
+
+    <ImageButton
+
+        android:id="@+id/fab"
+        android:layout_width="303dp"
+        android:layout_height="73dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        app:srcCompat="@drawable/search"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="center_horizontal"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        tools:layout_conversion_absoluteX="40dp"
+        tools:layout_conversion_absoluteY="378dp"
+        tools:layout_conversion_absoluteWidth="303dp"
+        tools:layout_conversion_absoluteHeight="73dp"
+        tools:layout_editor_absoluteY="385dp"
+        tools:layout_editor_absoluteX="41dp"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/spinner3"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
