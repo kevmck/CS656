@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import javax.json.*;
 import static cs656.cri.R.id.listView;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
 public class SearchResults extends AppCompatActivity
 {
     private ListView mListView;
@@ -50,7 +53,17 @@ public class SearchResults extends AppCompatActivity
             for (int i = 0; i < keys.length; i++)
             {
                 String value = item.getString(keys[i]);
-                str += keys[i] + ": " + value + "\r\n\r\n";
+                if(!keys[i].equals("ReportReceivedDate"))
+                    str += keys[i] + ": " + value + "\r\n\r\n";
+                else
+                {
+                    int dashLoc = value.indexOf("-");
+                    int bracLoc = value.indexOf("(");
+                    Timestamp recalldate = new Timestamp (new Long(value.substring(bracLoc +1, dashLoc)));
+                    SimpleDateFormat dateconvert = new SimpleDateFormat ("EEE, d MMM yyyy HH:mm:ss");
+                    String rd = dateconvert.format(recalldate);
+                    str += keys[i] + ": " + rd + "\r\n\r\n";
+                }
             }
             recalls.add(str + "\r\n");
         }

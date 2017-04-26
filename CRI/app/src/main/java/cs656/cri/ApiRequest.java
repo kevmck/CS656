@@ -85,14 +85,23 @@ class ApiRequest implements Runnable
         //is in JSON format, and decodes the JSON using the javax.json library (not included with Android Studio by default).
         //The raw string data is transformed into a JSON object, which the javax.json library can then process by their key/value pairings.
         //As with the previous section, the try/catch block is required only by Android Studio.
-        String inputLine;
+        String inputLine = "";
+        String res = "";
 
         try
         {
-            while ((inputLine = in.readLine()) != null)
-            {
+
+            while ( (inputLine = in.readLine()) != null) {
+                res += inputLine;
+            }
+            res.replace("&","");
+
+//            while ((inputLine = in.readLine()) != null)
+//           {
+
+
                 //Steps to read the JSON, make it into a JsonObject and turn it into an array.
-                JsonReader jsonReader = Json.createReader(new StringReader(inputLine));
+                JsonReader jsonReader = Json.createReader(new StringReader(res));
                 JsonObject jsonObj = jsonReader.readObject();
                 JsonArray list = jsonObj.getJsonArray("Results");
 
@@ -115,7 +124,7 @@ class ApiRequest implements Runnable
                     results = list.toString();
                 }
 
-            }
+//            }
         }
         catch(IOException e)
         {
